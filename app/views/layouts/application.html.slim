@@ -1,0 +1,60 @@
+doctype html
+html ng-app=""
+	head
+		- @title ||= "Capas de sofás"
+		title= @title
+		= stylesheet_link_tag "application"
+		= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTZFrg9Mn1ZpMp_FiI3631vnQbf6xzkM&sensor=true"
+		= javascript_include_tag "application"
+		= csrf_meta_tag
+		meta property="fb:admins" content="1219969805"
+		/ meta property="fb:app_id" content="472373296194510"
+		- if @open_graph_data
+			- for data in @open_graph_data
+				meta property="og:#{data.keys.first}" content=data.values.first
+	body class=(@content_class)
+		header
+			.logo= link_to "/" do
+				= image_tag (@logo || "logo-cia-das-capas.png"), size: "128x60"
+			nav
+				ul.nav.nav-pills
+					- for item in ["produtos", "localização", "dúvidas", "contato"]
+						li= link_to item, "/"+item.parameterize, class: ("active" if item == @current_page )
+
+					- if user_signed_in?
+						li= link_to "Encerrar sessão", destroy_user_session_path, method: :delete
+			.fb-like-box style="float: right" data={href:"https://www.facebook.com/ciadascapas.com.br", width:292, show_faces:false, header:false, stream:false,show_border:false } data-colorscheme=("dark" if @content_class)
+
+		.clearfix
+		section
+			- unless @content_class 
+				nav.left-navigation= yield :left_column
+			.dynamic-column style=("padding-left: 200px" unless @content_class) = yield
+		
+		footer
+			.phone
+				i.icon-phone>
+				| (11)5542-5132
+			address
+				i.icon-globe><
+				| Avenida dos Eucaliptos, 800 — Moema / São paulo - SP 
+
+		<div id="fb-root"></div>
+		javascript:
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=472373296194510";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-23600296-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();

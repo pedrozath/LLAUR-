@@ -1,0 +1,1 @@
+Slim::Embedded.default_options[:markdown] = {:hard_wrap => true}

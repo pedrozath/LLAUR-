@@ -1,0 +1,17 @@
+section
+	header
+		h2
+			- if user_signed_in?
+				=> link_to glyph(:trash), category, method: :delete, data: {action: "destroy"}
+			= link_to category.title, [category, Photo]
+
+	- for subcategory in category.subcategories
+		ul
+			li
+				- if user_signed_in?
+					=> link_to glyph(:trash), [category, subcategory], method: :delete, data: {action: "destroy"}
+				= link_to subcategory.title, [category, subcategory, Photo]
+
+	- if user_signed_in?
+		= simple_form_for [category, Subcategory.new] do |f|
+			= f.input :title, placeholder: "Nova Sub-categoria", label: false

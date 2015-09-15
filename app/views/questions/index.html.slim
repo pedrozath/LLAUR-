@@ -1,0 +1,16 @@
+header: h2 Dúvidas
+
+- if user_signed_in?
+	= simple_form_for Question.new, class: "form-horizontal" do |f|
+		= f.input :title, label: "Pergunta"
+		= f.input :answer, label: "Resposta"
+		= f.submit 
+
+- for question in @questions do
+	markdown:
+		### #{question.title}
+		#{question.answer}
+
+hr
+
+= link_to "Minha dúvida não se encontra nesta lista.", new_contact_path

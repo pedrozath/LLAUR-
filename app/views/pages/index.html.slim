@@ -1,0 +1,20 @@
+.headline
+	markdown:
+		# Aqui você encontra **capas para sofá** pronta-entrega e sob-medida. **Stretch**, **sarja** e outros tecidos
+		
+		Somos uma loja de decoração localizada em Moema. Temos também tapetes sob-medida, almofadas, mantas e porta-copos.
+
+
+	= link_to "Entrar no site", "/produtos", class: "btn btn-primary btn-lg"
+
+.overlay
+#fotos-de-capas.carousel.transition.slide data-inteval="1000" data-pause="false"
+	.carousel-inner
+		- @photos.each_with_index do |photo, x|
+			= content_tag :div, class: "item#{" active" if x==0}" do
+				= image_tag photo.image_url :large
+		
+	= link_to "#fotos-de-capas", data:{slide:"prev"} do
+		span.left.carousel-control.icon-prev
+	= link_to "#fotos-de-capas", data:{slide:"next"} do
+		span.right.carousel-control.icon-next

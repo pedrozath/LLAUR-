@@ -1,0 +1,274 @@
+//= require bootstrap
+//= require dropzone
+//= require _font-awesome
+
+@import "bourbon"
+
+@font-face
+	font-family: 'Futura'
+	src: local('☺'), url('/assets/fonts/futura.woff') format('woff')
+	font-weight: 500
+	font-style: normal
+
+@font-face
+	font-family: 'Futura'
+	src: local('☺'), url('/assets/fonts/futura-medium.woff') format('woff')
+	font-weight: 700
+	font-style: normal
+
+
+$true_black: #000
+$black: #333
+$white: #fff
+$brown: #75341b
+$cyan: #2d737e
+$light_cyan: transparentize($cyan, 0.8)
+
+$tipo_a: "Futura"
+$tipo_b: "Georgia"
+
+h1, h2, h3, h4, h5
+	:color $brown
+
+body
+	// :padding 0 15px
+	:text-align left
+	:font-family $tipo_b
+	:padding-bottom 40px
+	
+	> *
+		:padding 15px
+	
+	> section
+		:margin-top 60px
+		:overflow hidden
+		
+
+		img
+			:width 100%
+
+	> header
+		:position fixed
+		:background-color $white
+		:width 100%
+		:min-width 960px
+		:z-index 5
+		:background-image image-url("bg.png")
+		:background-repeat repeat-x
+
+		> *
+			:float left
+
+		nav
+			:margin-left 10px
+			:margin-top 12px
+
+			a
+				:font-family $tipo_a
+				:color $cyan
+				:font-size 12px
+				:font-style normal
+				:text-transform uppercase
+				
+				&.active
+
+	&.full
+		:padding 0
+		:color $white
+		
+		> section
+			:position absolute
+			:z-index -1
+			:padding 0
+			:background-color $black
+			:height 100%
+			:width 100%
+			:overflow hidden
+			:top 0
+			:margin-top 0
+
+		> header
+			:background-color transparent
+			:background none
+			:padding 15px
+
+			a 
+				:color $white
+
+				&:hover
+					:color $white
+
+.overlay
+	:width 100%
+	:height 100%
+	:position fixed
+	:top 0
+	:left 0
+	:background transparent image-url("bg-pat.png") repeat
+	:z-index 1
+
+[data-action]
+	&:hover
+		:text-decoration none
+
+#produtos .photo, #photo, .map
+	:background-color $true_black
+	:border 1px solid $light_cyan
+
+#photo
+	:width 700px
+	:margin 0 0 15px 15px
+	// :border 2px solid $black
+
+#produtos .photo
+	:margin 0 15px 15px 0
+	:float left
+	:width 200px
+	:height 150px
+
+	nav a
+		:color $white
+		:font-size 20px
+		:padding 10px
+		:display block
+
+
+	img
+		:display block
+		:background-color $white
+		// :-webkit-filter saturate(0.0) contrast(1.5)
+
+		&:hover
+			:-webkit-filter saturate(0.3) contrast(2)
+
+figure
+	figcaption
+		:position absolute
+		:bottom 0px
+		:width 100%
+		:padding 10px
+		:color $white
+		:background-color transparentize($true_black, 0.4)
+
+.dropzone
+	:width 100%
+
+.dynamic-column
+	:overflow visible
+	:min-width 960px
+	:padding-bottom 100px
+
+section+section
+	:margin-top 15px
+
+.left-navigation
+	:width 200px
+	:position fixed
+	:margin 0 15px
+
+.nav-pills li a
+	:border-radius 0
+	:font-size 16px
+	:font-weight 700
+	:letter-spacing 1px
+	&:hover
+		:background-color transparent
+		:color $black
+		:text-decoration underline
+
+a
+	:color $black
+	:font-style italic
+
+	&:hover
+		:color $black
+
+header
+	:padding-bottom 15px
+
+h2, h3, h4, h5
+	:font-family $tipo_a
+	:font-style normal
+	:font-weight 700
+	:text-transform uppercase
+
+h2
+	:font-size 20px
+	:margin 0
+
+h3
+	:font-size 14px
+
+nav h2
+	:font-size 14px
+	:margin 0
+
+	a
+		:font-style normal
+		:color $brown
+
+ul
+	:list-style-type none
+	:padding 0
+
+	li
+
+
+.headline
+	:padding-left 40px
+	:width 650px
+	:left 40%
+	:top 40%
+	:position absolute
+	:z-index 3
+	:font-family Helvetica,Arial
+
+	h1
+		:margin-left -40px
+		:text-shadow 1px 1px 1px $black
+		:text-align left
+		:font-weight lighter
+		:color $white
+		:text-indent 40px
+
+	p
+		:font-weight lighter
+		:text-shadow 1px 1px 1px $black
+		:width 80%
+		:font-size 20px
+
+	.photo
+		width: 200px
+		height: 200px
+
+.phone, address, footer
+	:position fixed
+	:z-index 1
+	:bottom 0
+	:padding 15px
+	:font-family Futura
+	:text-transform uppercase
+	:font-size 20px
+
+footer
+	:background-color transparentize($white, 0.2)
+	:height 60px
+	:width 100%
+	:z-index 4
+
+body.full footer
+	:background none
+
+address
+	:right 0
+	:margin-bottom 0
+
+.phone
+	:left 0
+
+.btn
+	:font-family $tipo_a
+	:font-weight 700
+	:font-style normal
+	:text-transform uppercase
+	:letter-spacing 2px

@@ -1,0 +1,21 @@
+markdown:
+	**Nome:** #{@contact[:name]}  
+	**E-mail:** #{@contact[:email]}  
+
+markdown:
+	#{@contact[:message]}
+
+- if @contact[:incluir_medidas]
+	b Medidas
+
+	tr
+		td Braço do sofá
+		td= @contact[:medidas_frente_do_braco]
+
+	tr	
+		td Sofá por Dentro
+		td= @contact[:medidas_por_dentro]
+
+	tr
+		td Profundidade
+		td= @contact[:medidas_profundidade]

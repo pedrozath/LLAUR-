@@ -1,0 +1,17 @@
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTZFrg9Mn1ZpMp_FiI3631vnQbf6xzkM&sensor=true"
+= javascript_include_tag "maps"
+
+javascript:
+	window.current_position = [#{request.location.latitude},#{request.location.longitude}]
+
+header: h2 Localização
+
+.row: .col-sm-6
+	markdown:
+		A Avenida dos Eucaliptos fica próxima à Avenida Ibirapuera, na altura do Shopping Ibirapuera. 
+		
+		A rua está temporariamente interditada pelas obras da Linha 5 (lilás) do Metrô. Porém pode-se entrar e sair pois o trecho entre Alameda dos Arapanés e Avenida Ibirapuera possui mão dupla.
+
+		Temos estacionamento em frente à loja. 
+
+.row: .col-sm-6: .map style="height: 400px; width: 600px"

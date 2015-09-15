@@ -1,0 +1,26 @@
+.col-xs-9 ng-hide="enviado"
+	/ .msg ng-hide="estado=='São Paulo'"
+		p Nosso sistema detectou que você mora em {{estado="#{@estado}"}}. Todavia, apenas entregamos para o estado de São Paulo.
+		= link_to "Estou ciente e desejo entrar em contato", "#", class: "btn btn-primary", "ng-click" => "mostrar_contato=true", "ng-hide" => "mostrar_contato"
+
+	= simple_form_for Contact.new, url:"/contato", html:{"name" => "contact", multipart: true} do |f|
+		
+		markdown:
+			Caso queira receber um orçamento, por gentileza, preencha os campos abaixo, incluindo as medidas de seu sofá.
+
+		= f.input :name, input_html: {class: "form-control"}, label: "Seu nome"
+		= f.input :email, input_html: {class: "form-control"}, label: "Seu e-mail (para entrarmos em contato)"
+		= f.input :message, input_html: {class: "form-control", rows: 10}, label: "Sua mensagem, dúvida ou sugestão"
+		= f.input :attachment, label: "Anexar uma foto (opcional)", as: :file
+
+		.checkbox: label
+			| Incluir medidas do sofá?
+			= f.input_field :incluir_medidas, as: :boolean, "ng-model" => "incluir_medidas"
+
+		.medidas ng-show="incluir_medidas" ng-init="incluir_medidas=false"
+			.row: .col-xs-12: img ng-src="{{medidas_img_source}}" ng-init="medidas_img_source='/assets/medidas-frente-do-braco.jpg'"
+			.row
+				- for medida in ["Frente do Braço", "Por dentro", "Profundidade"]
+					= f.input "medidas_#{medida.parameterize.underscore}", wrapper_html: {class: "col-xs-4"}, label: medida+"(cm)", input_html: {"ng-click" => "medidas_img_source='/assets/medidas-"+medida.parameterize+".jpg'"}
+
+		= f.submit "Enviar", class: "btn btn-large btn-primary pull-right", "ng-click" => "enviado=true"

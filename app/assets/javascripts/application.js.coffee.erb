@@ -1,0 +1,41 @@
+#= require jquery
+#= require jquery_ujs
+#= require jquery.turbolinks
+#= require angular
+#= require bootstrap
+#= require dynamic_column
+#= require dropzone
+#= require image_zoom
+#= require contacts_controller
+#= require maps
+
+$ -> 
+	do $(".carousel").carousel
+	new DynamicColumn ".dynamic-column"
+	$(window).load -> $(window).resize()
+
+	refresh = (resource) -> 
+		$.get "/#{resource}", (html) -> 
+			$("##{resource}").html html
+			main_administration()
+		
+	main_administration = ->
+		$("[data-action='destroy']").click ->
+			$.post $(this).attr("href"), {_method: "delete" }, (html) => 
+				refresh "produtos"
+				refresh "categories"
+			false
+
+	choose_photo = ->
+		if $("#photo").size()
+			$(".photo a").click ->
+				$.get $(this).attr("href"), (html) -> $("#photo").html html
+				false
+
+	choose_photo()
+	main_administration()
+
+	$(".dropzone").dropzone
+		init: -> this.on "success", -> 
+			refresh "produtos"
+			refresh "categories"

@@ -1,0 +1,23 @@
+- @title = @photo.description
+- content_for :left_column
+	#categories
+		= render(partial: "categories/category", collection: Category.all)
+		- if user_signed_in?
+			hr
+			= simple_form_for Category.new do |f|
+				= f.input :title, placeholder: "Nova Categoria", label: false
+
+figure#photo style="min-width:696px; min-height:522px; overflow: visible; position: relative; margin: 0"
+	= image_tag @photo.image_url(:large), width: "400"
+	figcaption style="z-index: 100"
+		markdown:
+			#{@photo.description}
+	
+		.fb-like style="z-index: 100" data={href:request.url, width:450, show_faces:false, send:"true", colorscheme:"dark"}
+
+		- if user_signed_in?
+			= simple_form_for [@photo] do |f|
+				= f.input :description, placeholder: "Descreva a foto", label: false, input_html: {class: "col-xs-10"}
+
+
+.fb-comments data-href=request.url data-width="470"
