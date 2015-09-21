@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20131013191757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20131013191757) do
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
 
-  create_table "contacts", force: true do |t|
+  create_table "contacts", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.text     "message"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20131013191757) do
     t.datetime "updated_at"
   end
 
-  create_table "photos", force: true do |t|
+  create_table "photos", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
@@ -41,19 +41,19 @@ ActiveRecord::Schema.define(version: 20131013191757) do
     t.string   "description"
   end
 
-  create_table "photos_tags", id: false, force: true do |t|
+  create_table "photos_tags", id: false, force: :cascade do |t|
     t.integer "photo_id"
     t.integer "tag_id"
   end
 
-  create_table "questions", force: true do |t|
+  create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.string   "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "subcategories", force: true do |t|
+  create_table "subcategories", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -63,13 +63,13 @@ ActiveRecord::Schema.define(version: 20131013191757) do
 
   add_index "subcategories", ["slug"], name: "index_subcategories_on_slug", unique: true, using: :btree
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
