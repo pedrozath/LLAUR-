@@ -3,8 +3,8 @@ module ApplicationHelper
 		"<i class='icon-#{glyph.to_s}'></i>".html_safe
 	end
 
-    def is_admin?
-        true
+    def admin?
+        session[:pass] == ENV["PASS"]
     end
         
 end

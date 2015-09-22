@@ -1,8 +1,4 @@
-//= require bootstrap
-//= require dropzone
 //= require _font-awesome
-
-
 
 @import "bourbon"
 
@@ -30,9 +26,24 @@ h1, h2, h3, h4, h5
 	top: 0
 	z-index: 1
 
+.admin-bar
+	position: fixed
+	left: 0
+	top: 0
+	z-index: 2
+form
+	width: 400px
+
+input, textarea
+	padding: 10px
+	font-size: 14px
+	display: block
+	width: 100%
+	margin: 10px 0
 
 body
-	:padding 0
+	padding: 0
+	margin: 0
 	:text-align left
 	:font-family $tipo_b
 	:padding-bottom 40px
@@ -40,6 +51,9 @@ body
 	
 	main
 		padding: 40px
+		box-shadow: 0 -5px 20px transparentize($black, 0.85)
+		position: relative
+		z-index: 2
 
 	> section
 		:margin-top 60px
@@ -51,7 +65,6 @@ body
 
 	header.entrada
 		overflow: hidden
-		border: 1px solid red
 		position: relative
 
 		.imagem-entrada
@@ -176,10 +189,6 @@ h2, h3, h4, h5
 	:font-style normal
 	:font-weight 700
 	:text-transform uppercase
-
-h2
-	:font-size 20px
-	:margin 0
 
 h3
 	:font-size 14px

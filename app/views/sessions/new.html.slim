@@ -1,0 +1,5 @@
+= form_for :user do |f|
+    p= Time.now
+    p= flash[:notice]
+    = f.text_field :pass, type: :password
+    = f.submit :ok

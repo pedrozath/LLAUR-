@@ -1,11 +1,6 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.turbolinks
-# require bootstrap
-# require dropzone
-# require image_zoom
-# require contacts_controller
-# require maps
 
 $ ->
 	header_entrada = $("header.entrada")

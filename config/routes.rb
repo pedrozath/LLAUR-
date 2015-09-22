@@ -1,7 +1,10 @@
 Ciadascapas::Application.routes.draw do
+	get "/admin", to: "sessions#new"
+	post "/admin", to: "sessions#create"
+	get "/logout", to: "sessions#destroy"
+
 	get "/webmail" => redirect("http://mail.google.com/a/capasparasofa.com.br")
 	get "questions/index"
-	get "/admin", to: "sessions#create"
 	root to: "pages#index"
 	get "/produtos" => "photos#index"
 	get "/localizacao" => "pages#localizacao"

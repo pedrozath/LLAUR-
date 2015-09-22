@@ -1,5 +1,5 @@
 header.entrada
-    = image_tag "logo-llaure.png", class: "logo"
+    = image_tag "logo-llaure.png", class: "logo", size: ""
     = image_tag "sala-entrada.jpg", class: "imagem-entrada"
 
 main
@@ -7,5 +7,9 @@ main
         h2 = category.name
         markdown: #{category.text}
 
-    - if is_admin?
+    - if admin?
         h2 Criar nova Categoria de produto
+        = form_for Category.new do |f|
+            = f.text_field :title, placeholder: "Nome (ex: Sarja)"
+            = f.text_area :description, placeholder: "Descrição", rows: 5
+            = f.submit "Pronto"

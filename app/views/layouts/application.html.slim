@@ -12,6 +12,10 @@ html ng-app=""
 			- for data in @open_graph_data
 				meta property="og:#{data.keys.first}" content=data.values.first
 	body
+		- if admin?
+			.admin-bar 
+				| Você está logado como Administrador |  
+				= link_to "Sair", "/logout"
 		= yield
 		footer
 			.phone
