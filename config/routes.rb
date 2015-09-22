@@ -1,8 +1,7 @@
 Ciadascapas::Application.routes.draw do
 	get "/webmail" => redirect("http://mail.google.com/a/capasparasofa.com.br")
 	get "questions/index"
-	devise_for :users
-	get "/admin", to: redirect("/users/sign_in")
+	get "/admin", to: "sessions#create"
 	root to: "pages#index"
 	get "/produtos" => "photos#index"
 	get "/localizacao" => "pages#localizacao"

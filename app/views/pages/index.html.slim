@@ -1,6 +1,11 @@
-
-= image_tag "logo-llaure.png", class: "logo"
-= image_tag "sala-entrada.jpg", class: "imagem-entrada"
+header.entrada
+    = image_tag "logo-llaure.png", class: "logo"
+    = image_tag "sala-entrada.jpg", class: "imagem-entrada"
 
 main
-    
+    - for category in @categories
+        h2 = category.name
+        markdown: #{category.text}
+
+    - if is_admin?
+        h2 Criar nova Categoria de produto

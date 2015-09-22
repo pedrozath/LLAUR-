@@ -2,6 +2,8 @@
 //= require dropzone
 //= require _font-awesome
 
+
+
 @import "bourbon"
 
 $true_black: #000
@@ -14,26 +16,31 @@ $light_cyan: transparentize($cyan, 0.8)
 $tipo_a: Arial
 $tipo_b: Arial
 
+*
+	-webkit-box-sizing: border-box
+	box-sizing: border-box
+
 h1, h2, h3, h4, h5
 	:color $brown
 
 .logo
-	position: fixed
+	position: absolute
 	padding: 20px 40px
 	left: 0
 	top: 0
 	z-index: 1
 
-.imagem-entrada
-	position: absolute
-	width: 100%
 
 body
 	:padding 0
 	:text-align left
 	:font-family $tipo_b
 	:padding-bottom 40px
+	height: 3000px
 	
+	main
+		padding: 40px
+
 	> section
 		:margin-top 60px
 		:overflow hidden
@@ -41,6 +48,14 @@ body
 
 		img
 			:width 100%
+
+	header.entrada
+		overflow: hidden
+		border: 1px solid red
+		position: relative
+
+		.imagem-entrada
+			width: 100%
 
 	&.full
 		:padding 0
