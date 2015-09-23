@@ -1,8 +1,12 @@
 header.entrada
     = image_tag "logo-llaure.png", class: "logo", size: ""
     = image_tag "sala-entrada.jpg", class: "imagem-entrada"
+    = link_to "Conheça nosso trabalho", "#", class: "btn"
 
 main
+    h2 Fazemos Capas para Sofás
+    .conteudo Confira abaixo os tipos de capas que confeccionamos
+
     - for category in @categories
         article.tipos-de-capa
             .row

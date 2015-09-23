@@ -12,13 +12,25 @@ $ ->
 	header_entrada = $("header.entrada")
 	imagem_entrada = header_entrada.find(".imagem-entrada")
 	logo = header_entrada.find(".logo")
+	btn = header_entrada.find(".btn")
 	
 	$(window).on "resize", ->
 		header_entrada.css
 			height: imagem_entrada.height()
 
+		btn.css
+			left: ($(window).width()-btn.outerWidth())*0.5
+			top: ($(window).height()-btn.height())*0.8
+
 	imagem_entrada.on "load", -> $(window).trigger "resize"
 	imagem_entrada[0].src = imagem_entrada[0].src
+	btn.on "click", (e) ->
+		e.preventDefault()
+		$("html, body").animate
+			scrollTop: $("main").offset().top
+		, 2000
+
+	$(window).trigger "resize"
 
 	$(document).on "scroll", (e) -> 
 		scroll = $(document).scrollTop()
@@ -27,6 +39,9 @@ $ ->
 
 		logo.css
 			marginTop: scroll * 0.97
+
+		btn.css
+			marginTop: scroll * 0.40
 
 	$("[data-editable]").each ->
 		App.editables.push new Editable 

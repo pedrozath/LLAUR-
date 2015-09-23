@@ -6,11 +6,10 @@ html ng-app=""
 		= stylesheet_link_tag "application"
 		= javascript_include_tag "application"
 		= csrf_meta_tag
-		meta property="fb:admins" content="1219969805"
 		/ meta property="fb:app_id" content="472373296194510"
-		- if @open_graph_data
-			- for data in @open_graph_data
-				meta property="og:#{data.keys.first}" content=data.values.first
+		/ - if @open_graph_data
+		/ 	- for data in @open_graph_data
+		/ 		meta property="og:#{data.keys.first}" content=data.values.first
 	body
 		- if admin?
 			.admin-bar 
