@@ -4,12 +4,39 @@ header.entrada
 
 main
     - for category in @categories
-        h2 = category.name
-        markdown: #{category.text}
+        article.tipos-de-capa
+            .row
+                .span1
+                    - if admin?
+                        = link_to "Remover categoria", "#", class: "admin-btn", data:{destroyable: true, id: category.id, route: "/"}
 
+                    = content_tag "h2", data:(({editable: true, id:category.id, field:"title"}) if admin?)
+                        = category.title
+
+                    = content_tag "div", class:"conteudo", data:(({editable: true, id:category.id, field:"description"}) if admin?)
+                        = raw category.description
+
+                .span2
+                    ul.photos
+                        - for photo in category.photos
+                            li= link_to photo.image.url
+                                = image_tag photo.image.url :small
+                                - if admin?
+                                    = link_to "Remover", "#", class: "admin-btn", data:{destroyable: true, id: photo.id, route: "/fotos/"}
     - if admin?
-        h2 Criar nova Categoria de produto
-        = form_for Category.new do |f|
-            = f.text_field :title, placeholder: "Nome (ex: Sarja)"
-            = f.text_area :description, placeholder: "Descrição", rows: 5
-            = f.submit "Pronto"
+        hr
+        h2 Área de admin
+        .row
+            .span1
+                h3 Nova categoria de produto
+                = form_for Category.new do |f|
+                    = f.text_field :title, placeholder: "Nome (ex: Sarja)"
+                    = f.text_area :description, placeholder: "Descrição", rows: 5
+                    = f.submit "Pronto"
+            
+            .span1
+                h3 Nova(s) fotos de produtos
+                = form_for Photo.new do |f| 
+                    = f.collection_select(:category, Category.all, :id, :title)
+                    = f.file_field :image, multiple: true
+                    = f.submit "Pronto"

@@ -1,9 +1,12 @@
 class PhotosController < ApplicationController
 	def create
-		p = Photo.create params[:photo]
-		p.image = params["file"]
-		p.save
-		render text: "tudo certo!"
+		for file in params["photo"]["image"] do
+			p = Photo.new
+			p.image = file
+			p.category_id = params["photo"]["category"]
+			p.save
+		end
+		redirect_to "/"
 	end
 
 	def update

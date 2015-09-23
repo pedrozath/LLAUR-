@@ -1,6 +1,12 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.turbolinks
+#= require editable
+#= require destroyable
+
+App = 
+	editables: []
+	destroyables: []
 
 $ ->
 	header_entrada = $("header.entrada")
@@ -17,39 +23,18 @@ $ ->
 	$(document).on "scroll", (e) -> 
 		scroll = $(document).scrollTop()
 		imagem_entrada.css
-			marginTop: scroll * 0.85
+			marginTop: scroll * 0.50
 
 		logo.css
 			marginTop: scroll * 0.97
 
+	$("[data-editable]").each ->
+		App.editables.push new Editable 
+			element: $(this)
+			route: "/" 
 
+	$("[data-destroyable]").each ->
+		App.destroyables.push new Destroyable
+			element: $(this)
 
-# $ -> 
-	# do $(".carousel").carousel
-	# $(window).load -> $(window).resize()
-
-	# refresh = (resource) -> 
-	# 	$.get "/#{resource}", (html) -> 
-	# 		$("##{resource}").html html
-	# 		main_administration()
-		
-	# main_administration = ->
-	# 	$("[data-action='destroy']").click ->
-	# 		$.post $(this).attr("href"), {_method: "delete" }, (html) => 
-	# 			refresh "produtos"
-	# 			refresh "categories"
-	# 		false
-
-	# choose_photo = ->
-	# 	if $("#photo").size()
-	# 		$(".photo a").click ->
-	# 			$.get $(this).attr("href"), (html) -> $("#photo").html html
-	# 			false
-
-	# choose_photo()
-	# main_administration()
-
-	# $(".dropzone").dropzone
-	# 	init: -> this.on "success", -> 
-	# 		refresh "produtos"
-	# 		refresh "categories"
+window.App = App
