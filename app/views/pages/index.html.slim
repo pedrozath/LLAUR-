@@ -36,11 +36,22 @@ main
                 = form_for Category.new do |f|
                     = f.text_field :title, placeholder: "Nome (ex: Sarja)"
                     = f.text_area :description, placeholder: "Descrição", rows: 5
-                    = f.submit "Pronto"
+                    = f.submit "Criar nova categoria"
             
             .span1
                 h3 Nova(s) fotos de produtos
                 = form_for Photo.new do |f| 
                     = f.collection_select(:category, Category.all, :id, :title)
                     = f.file_field :image, multiple: true
-                    = f.submit "Pronto"
+                    = f.submit "Adicionar fotos à categoria"
+
+footer.span1.hidden
+    header Orçamentos / Dúvidas?
+    .conteudo
+        p 
+            | Entre em contato pelo número 11 98057-7677 ou preencha o formulário abaixo:
+        = form_for Contact.new do |f|
+            = f.text_field :name, placeholder: "Digite seu nome", required: true
+            = f.text_field :email, placeholder: "Seu e-mail ou alguma outra forma de contato", required: true
+            = f.text_area :message, rows: 5, required: true
+            = f.submit "Enviar"
