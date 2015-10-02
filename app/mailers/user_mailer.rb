@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
 
   	mail to: ENV['EMAIL_RECEIVER'],
   		 bcc: 'pedrozath@gmail.com',
-  		 subject: "#{contact[:name]} enviou uma mensagem",
+  		 subject: "LLAURÉ / #{contact[:name]}",
   		 reply_to: contact[:email]
   end
 end
