@@ -1,9 +1,9 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'thin'
 gem 'pg'
 gem 'rails'
-gem 'puma'
+gem 'puma', '2.14'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
