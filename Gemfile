@@ -20,9 +20,7 @@ gem 'fog'
 gem 'mini_magick'
 gem 'font-awesome-sass-rails'
 gem 'bourbon'
-gem 'geocoder'
-gem 'angularjs-rails'
-gem 'friendly_id'
+gem 'tzinfo-data'
 
 group :production do
 	gem 'rails_12factor'

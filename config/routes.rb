@@ -1,4 +1,5 @@
 Ciadascapas::Application.routes.draw do
+	get "zohoverify/verifyforzoho.html", to: "pages#zoho"
 	get "/admin", to: "sessions#new"
 	post "/admin", to: "sessions#create"
 	get "/logout", to: "sessions#destroy"
