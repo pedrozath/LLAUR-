@@ -23,7 +23,7 @@ main
                 .span2
                     ul.photos
                         - for photo in category.photos
-                            li= link_to photo.image.url
+                            li= link_to photo.image.url :large, target: "_blank"
                                 = image_tag photo.image.url :small
                                 - if admin?
                                     = link_to "Remover", "#", class: "admin-btn", data:{destroyable: true, id: photo.id, route: "/fotos/"}
@@ -44,8 +44,7 @@ main
                     = f.collection_select(:category, Category.all, :id, :title)
                     = f.file_field :image, multiple: true
                     = f.submit "Adicionar fotos à categoria"
-
-footer.span1.hidden
+footer.span1.hidden#contato
     header Orçamentos / Dúvidas?
     .conteudo
         p 
@@ -61,3 +60,4 @@ footer.span1.hidden
             = f.text_field :email, placeholder: "Seu e-mail ou alguma outra forma de contato", required: true
             = f.text_area :message, rows: 5, required: true
             = f.submit "Enviar"
+= link_to "Deslize para contato / orçamentos", "#contato", class:"mobile-contact"

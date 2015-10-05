@@ -1,4 +1,5 @@
 Ciadascapas::Application.routes.draw do
+	root to: "pages#index"
 	get "zohoverify/verifyforzoho.html", to: "pages#zoho"
 	get "/admin", to: "sessions#new"
 	post "/admin", to: "sessions#create"
@@ -6,7 +7,6 @@ Ciadascapas::Application.routes.draw do
 
 	get "/webmail" => redirect("http://mail.google.com/a/capasparasofa.com.br")
 	get "questions/index"
-	root to: "pages#index"
 	get "/produtos" => "photos#index"
 	get "/localizacao" => "pages#localizacao"
 	get "/capas-para-sofa", to: redirect("/capas-para-sofa/fotos")
@@ -14,7 +14,6 @@ Ciadascapas::Application.routes.draw do
 	resources :questions, path: "duvidas"
 	resources :contacts, path: "contato"
 	resources :photos, path: "fotos"
-
 
 	resources :categories, path: "" do
 		resources :photos, path: "fotos"

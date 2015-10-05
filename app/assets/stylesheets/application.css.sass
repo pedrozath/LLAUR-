@@ -2,6 +2,10 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300)
 @import url(https://fonts.googleapis.com/css?family=Raleway:100,400,700,900)
 
+=mobile
+	@media (max-width: 500pt)
+		@content
+
 $black: #000
 $white: #fff
 $purple: #442863
@@ -24,6 +28,8 @@ $gutter: (100%/$grid-columns)/20
 	
 	.span#{$i}
 		width: $column-width
+		+mobile
+			width: 100%
 
 	.offset#{$i}
 		margin-left: $column-width
@@ -42,16 +48,24 @@ $gutter: (100%/$grid-columns)/20
 
 ul.photos
 	margin: 55px -10px 0 0
+	+mobile
+		margin: 20px 0
 
 	li
 		float: left
 		width: (1/4)*100%
 		padding: $gutter/2
 
+		+mobile
+			width: 50%		
+
 		img
 			width: 100%
 			border: 6px solid $white
 			box-shadow: 1px 1px 10px transparentize($black, 0.8)
+
+			+mobile
+				border-width: 4px
 
 article
 	border-top: 1px solid $light-purple
@@ -59,7 +73,8 @@ article
 	padding: 20px 0
 
 h2
-	margin: 0
+	margin: 10px 0
+	line-height: 1.1
 
 h1, h2, h3, h4, h5
 	color: $purple
@@ -107,6 +122,10 @@ h1, h2, h3, h4, h5
 	top: 0
 	z-index: 1
 
+	+mobile
+		width: 30%
+		padding: 5px 10px
+
 .admin-bar
 	position: fixed
 	left: 0
@@ -140,7 +159,6 @@ input[type="submit"]:hover, input:focus
 	background-color: $light-purple
 
 html
-	min-width: 1024px
 	position: relative
 
 body
@@ -149,16 +167,28 @@ body
 	:text-align left
 	:font-family $font-copy
 	:padding-bottom 40px
-	font-size: 16px
+	font-size: 14pt
 	line-height: 1.4
+
+	+mobile
+		padding: 0
+		padding-bottom: 50px
+		width: 100%
+		font-size: 12pt
 	
 	main
 		box-shadow: 0 -5px 20px transparentize($black, 0.85)
 		z-index: 2
 		position: relative
 
+		+mobile
+			box-shadow: none
+
 	> main
 		padding: 40px
+
+		+mobile
+			padding: 10px
 
 	> section
 		:margin-top 60px
@@ -171,6 +201,9 @@ body
 	header.entrada
 		overflow: hidden
 		position: relative
+
+		+mobile
+			width: 100%
 
 		.imagem-entrada
 			width: 100%
@@ -358,7 +391,17 @@ footer
 	cursor: pointer
 	background-color: $purple
 	transition: height 700ms $cubic-bezier, background-color 120ms, opacity 120ms
-	min-width: 400px
+	min-width: 480px
+
+	+mobile
+		min-width: 0
+		position: relative
+		bottom: auto
+		right: auto
+		opacity: 1
+		height: auto !important
+		width: 100%
+		box-shadow: none
 
 	&.hidden
 		opacity: 0
@@ -391,3 +434,20 @@ footer
 address
 	:right 0
 	:margin-bottom 0
+
+.mobile-contact
+	+mobile
+		background-color: transparentize($white, 0.3)
+		color: $purple
+		border-top: 1px dotted $purple
+		display: block
+		position: fixed
+		bottom: 0
+		padding: 20px 0
+		z-index: 10
+		font-size: 12px
+		text-decoration: none
+		text-transform: uppercase
+		font-style: normal
+		text-align: center
+		width: 100%
